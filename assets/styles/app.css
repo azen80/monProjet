@@ -1,3 +1,6 @@
 body {
-    background-color: skyblue;
+    background-color: #222222;
+}
+h1, p {
+    color: #C9C9C9;
 }
