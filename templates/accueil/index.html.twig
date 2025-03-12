@@ -5,12 +5,23 @@
  {% block body %}
      <div class="container">
          <div class="row mt-5">
-             <div class="col-sm-8 offset-sm-2">
-                 <h1>Première page web avec Symfony</h1>
-                 <p>Hello World !!!</p>
+             <div class="col-10 mx-auto">
+                 <h1>Nombre d'artistes trouvés : {{ artistes | length }}</h1>
+                 {% for artiste in artistes %}
+                 <span class="d-block">
+                     {{ artiste.name |upper }} - <b class="btn-primary p-1">{{ artiste.discs | length }}</b> disques
+                 </span>
+                 {% endfor %}
              </div>
          </div>
      </div>
-
+<h1>Liste des artistes</h1>
+<ul>
+    {% for artist in artistes %}
+        <li>{{ artist.name }}</li>
+    {% else %}
+        <p>Aucun artiste trouvé.</p>
+    {% endfor %}
+</ul>
      
  {% endblock %}
