@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+
 
 {% block title %}Contact Message{% endblock %}
 
 {% block body %}
-    <h1>Message de {{ email }}</h1>
+    <h1>Message de {{ user_email }}</h1>
     <p><strong>Objet:</strong> {{ subject }}</p>
     <p><strong>Message:</strong></p>
     <p>{{ message }}</p>

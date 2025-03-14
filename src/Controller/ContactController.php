@@ -37,7 +37,7 @@ class ContactController extends AbstractController
                 ->subject('Nouveau message de contact')
                 ->htmlTemplate('emails/contact_email.html.twig') 
                 ->context([
-                    'email' => $message->getEmail(),
+                    'user_email' => $message->getEmail(),
                     'subject' => $message->getObjet(),
                     'message' => $message->getMessage(),
                 ]);
