@@ -7,6 +7,11 @@ parameters:
     images_directory: '%kernel.project_dir%/public/assets/images'
 services:
     # default configuration for services in *this* file
+    App\EventSubscriber\ContactSubscriber:
+       arguments:
+           $mailer: '@mailer'
+       tags:
+           - { name: doctrine.event_subscriber, event: postPersist }
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
