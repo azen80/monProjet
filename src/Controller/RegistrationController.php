@@ -38,6 +38,9 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
     
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $user->setRoles(['ROLE_CLIENT']);
+            
             // Encode le mot de passe
             $plainPassword = $form->get('plainPassword')->getData();
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
@@ -52,8 +55,6 @@ class RegistrationController extends AbstractController
                 $request
             );
     
-            // Rediriger vers l'accueil si l'authentification échoue
-            return $this->redirectToRoute('app_accueil');
         }
     
         return $this->render('registration/register.html.twig', [
