@@ -12,6 +12,7 @@ use Symfony\Component\Mime\Address;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 
 
@@ -19,8 +20,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ContactController extends AbstractController
 {
     #[Route('/contact', name: 'app_contact')]
+
+    #[isGranted('ROLE_CLIENT', message: "Nous sommes désolés, vous ne disposez pas des autorisations nécessaires pour accèder à cette page!")]
+    #[Route('/contact', name: 'app_contact')]
     public function index(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
     {
+        
         $form = $this->createForm(ContactFormType::class);
         $form->handleRequest($request);
 
